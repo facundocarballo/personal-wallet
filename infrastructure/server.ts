@@ -3,6 +3,8 @@ import { UserRouter } from "./routes/user";
 import { CurrencyRouter } from "./routes/currency";
 import { AccountsRouter } from "./routes/accounts";
 import mysql, { Connection, QueryError } from "mysql2";
+import { TransactionRouter } from "./routes/transaction";
+import { CategoryRouter } from "./routes/category";
 
 export const DatabaseConnection: Connection = mysql.createConnection({
   host: "localhost",
@@ -28,6 +30,8 @@ app.use(express.json());
 app.use("/users", UserRouter);
 app.use("/currencies", CurrencyRouter);
 app.use("/accounts", AccountsRouter);
+app.use("/categories", CategoryRouter);
+app.use("/transaction", TransactionRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
