@@ -31,7 +31,7 @@ app.use("/users", UserRouter);
 app.use("/currencies", CurrencyRouter);
 app.use("/accounts", AccountsRouter);
 app.use("/categories", CategoryRouter);
-app.use("/transaction", TransactionRouter);
+app.use("/transactions", TransactionRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
