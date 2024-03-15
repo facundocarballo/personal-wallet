@@ -33,10 +33,6 @@ app.use("/accounts", AccountsRouter);
 app.use("/categories", CategoryRouter);
 app.use("/transactions", TransactionRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
-
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });
