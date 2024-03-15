@@ -5,6 +5,7 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./",
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
   }
 }

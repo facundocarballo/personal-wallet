@@ -1,0 +1,73 @@
+{
+    "500": "Internal Server Error. Please inform us about this error so we can fix it quickly :)",
+    "user": {
+        "get": {
+            "400": "Body request don't have the correct data to create a user. Please check how to send the body request on the Github of this project and try again :)"
+        },
+        "post": {
+            "400": ""
+        },
+        "put": {
+            "400": ""
+        },
+        "delete": {
+            "400": ""
+        }
+    },
+    "account": {
+        "get": {
+            "400": ""
+        },
+        "post": {
+            "400": ""
+        },
+        "put": {
+            "400": ""
+        },
+        "delete": {
+            "400": ""
+        }
+    },
+    "category": {
+        "get": {
+            "400": ""
+        },
+        "post": {
+            "400": ""
+        },
+        "put": {
+            "400": ""
+        },
+        "delete": {
+            "400": ""
+        }
+    },
+    "currency": {
+        "get": {
+            "400": ""
+        },
+        "post": {
+            "400": ""
+        },
+        "put": {
+            "400": ""
+        },
+        "delete": {
+            "400": ""
+        }
+    },
+    "transaction": {
+        "get": {
+            "400": ""
+        },
+        "post": {
+            "400": ""
+        },
+        "put": {
+            "400": ""
+        },
+        "delete": {
+            "400": ""
+        }
+    }
+}
