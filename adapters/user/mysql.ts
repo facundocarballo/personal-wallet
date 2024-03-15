@@ -2,13 +2,14 @@ import { FieldPacket, QueryError } from "mysql2";
 import { User } from "../../domain/user";
 import { DatabaseConnection } from "../../infrastructure/server";
 import { UserRepository } from "../../ports/user";
+import ErrorMessages from "../../errors.json";
+import { resolve } from "path";
+import { rejects } from "assert";
 
 export class MySqlUserRepository implements UserRepository {
   async Create(user: User): Promise<User | undefined> {
     const newUserId = await ExecuteCreateUserStoredProcedure(user);
-    if (!newUserId) {
-      return undefined;
-    }
+    if (!newUserId) return undefined;
     return new User(
       newUserId,
       user.name,
@@ -19,11 +20,14 @@ export class MySqlUserRepository implements UserRepository {
   }
 
   async Get(id: number): Promise<User | undefined> {
-    return undefined;
+    const user = await ExecuteGetUserStoredProcedure(id);
+    if (!user) return undefined;
+    return new User(id, user.name, user.lastName, user.email, user.password);
   }
 }
 
 // Helpers
+/// Create User
 async function ExecuteCreateUserStoredProcedure(
   user: User
 ): Promise<number | undefined> {
@@ -38,7 +42,7 @@ async function ExecuteCreateUserStoredProcedure(
           fields: FieldPacket[]
         ) => {
           if (err) {
-            console.error("Error executing the stored procedure. ", err);
+            console.error(ErrorMessages.stored_procedures, err);
             reject(err);
             return undefined;
           }
@@ -47,7 +51,7 @@ async function ExecuteCreateUserStoredProcedure(
       );
     });
   } catch (error) {
-    console.error("Error executing the stored procedure.", error);
+    console.error(ErrorMessages.stored_procedures, error);
     return undefined;
   }
 }
@@ -66,4 +70,34 @@ async function FetchNewUserId(): Promise<number | undefined> {
       }
     );
   });
+}
+
+/// Get User
+async function ExecuteGetUserStoredProcedure(
+  id: number
+): Promise<User | undefined> {
+  try {
+    return await new Promise<User | undefined>((resolve, reject) => {
+      DatabaseConnection.query(
+        "CALL GetUser(?)",
+        [id],
+        (err: QueryError | null, results: any[], fields: FieldPacket[]) => {
+          if (err) {
+            console.error(ErrorMessages.stored_procedures, err);
+            reject(err);
+            return undefined;
+          }
+          const user = User.bodyToUser(results[0][0]);
+          if (!user) {
+            reject("User cannot be parsed from JSON.");
+            return undefined;
+          }
+          resolve(user);
+        }
+      );
+    });
+  } catch (err) {
+    console.error(ErrorMessages.stored_procedures, err);
+    return undefined;
+  }
 }

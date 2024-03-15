@@ -1,5 +1,6 @@
 {
     "500": "Internal Server Error. Please inform us about this error so we can fix it quickly :)",
+    "stored_procedures": "Error executing the stored procedure.",
     "user": {
         "get": {
             "400": "Body request don't have the correct data to create a user. Please check how to send the body request on the Github of this project and try again :)"

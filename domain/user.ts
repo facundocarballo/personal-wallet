@@ -20,12 +20,17 @@ export class User {
   }
 
   static bodyToUser(body: any): User | undefined {
-    const name = body.name;
-    const lastName = body.last_name;
-    const email = body.email;
-    const password = body.password;
+    const id = body.id ?? -1;
+    const name = body.name ?? "";
+    const lastName = body.last_name ?? "";
+    const email = body.email ?? "";
+    const password = body.password ?? "";
 
-    if (!name || !lastName || !email || !password) return undefined;
-    return new User(-1, name, lastName, email, password);
+    return new User(id, name, lastName, email, password);
+  }
+
+  isEqualTo(user: User): boolean {
+    if (user.id == this.id && user.password == this.password) return true;
+    return false;
   }
 }
