@@ -1,9 +1,10 @@
 import express from "express";
 import { Create, Delete, Get, Update } from "../controllers/category";
+import { CheckJWT } from "../../handlers/jwt";
 
 export const CategoryRouter = express.Router();
 
-CategoryRouter.get("/", Get);
-CategoryRouter.post("/", Create);
-CategoryRouter.put("/", Update);
-CategoryRouter.delete("/", Delete);
+CategoryRouter.get("/", CheckJWT, Get);
+CategoryRouter.post("/", CheckJWT, Create);
+CategoryRouter.put("/", CheckJWT, Update);
+CategoryRouter.delete("/", CheckJWT, Delete);
