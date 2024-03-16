@@ -36,5 +36,3 @@ app.use("/transactions", TransactionRouter);
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });
-
-// TODO: Crear Currencies utilizando el JWT.

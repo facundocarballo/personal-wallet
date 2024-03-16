@@ -1,9 +1,10 @@
 import express from "express";
 import { Create, Delete, Get, Update } from "../controllers/account";
+import { CheckJWT } from "../../handlers/jwt";
 
 export const AccountsRouter = express.Router();
 
-AccountsRouter.get("/", Get);
-AccountsRouter.post("/", Create);
-AccountsRouter.put("/", Update);
-AccountsRouter.delete("/", Delete);
+AccountsRouter.get("/", CheckJWT, Get);
+AccountsRouter.post("/", CheckJWT, Create);
+AccountsRouter.put("/", CheckJWT, Update);
+AccountsRouter.delete("/", CheckJWT, Delete);
