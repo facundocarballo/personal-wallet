@@ -3,8 +3,6 @@ import { User } from "../../domain/user";
 import { DatabaseConnection } from "../../infrastructure/server";
 import { UserRepository } from "../../ports/user";
 import ErrorMessages from "../../errors.json";
-import { resolve } from "path";
-import { rejects } from "assert";
 
 export class MySqlUserRepository implements UserRepository {
   async Create(user: User): Promise<User | undefined> {

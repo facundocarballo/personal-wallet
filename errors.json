@@ -1,6 +1,11 @@
 {
     "500": "Internal Server Error. Please inform us about this error so we can fix it quickly :)",
     "stored_procedures": "Error executing the stored procedure.",
+    "jwt": {
+        "miss": "JWT not provided.",
+        "invalid": "Invalid JWT.",
+        "not_correct": "JWT not provided in a correct way. Please provide the JWT using a Bearer Token."
+    },
     "user": {
         "get": {
             "400": "Body request don't have the correct data to create a user. Please check how to send the body request on the Github of this project and try again :)"
