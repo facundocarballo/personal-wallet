@@ -3,7 +3,7 @@ import { User } from "../domain/user";
 import { NextFunction, Request, Response } from "express";
 import ErrorMessages from "../errors.json";
 
-const SECRET_KEY = "Facundo_Carballo";
+const SECRET_KEY = "Facundo_Carballo"; // Set this on env file
 
 export const GenerateJWT = (user: User): string => {
   const payload = {

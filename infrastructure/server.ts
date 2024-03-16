@@ -5,6 +5,7 @@ import { AccountsRouter } from "./routes/accounts";
 import mysql, { Connection, QueryError } from "mysql2";
 import { TransactionRouter } from "./routes/transaction";
 import { CategoryRouter } from "./routes/category";
+import { TagRouter } from "./routes/tag";
 
 export const DatabaseConnection: Connection = mysql.createConnection({
   host: "localhost",
@@ -28,6 +29,7 @@ const port = 3000;
 app.use(express.json());
 
 app.use("/users", UserRouter);
+app.use("/tags", TagRouter);
 app.use("/currencies", CurrencyRouter);
 app.use("/accounts", AccountsRouter);
 app.use("/categories", CategoryRouter);
