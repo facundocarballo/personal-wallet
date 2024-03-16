@@ -25,7 +25,8 @@ export class Currency {
     const symbol = body.symbol ?? "";
     const usd_value = body.usd_value ?? 1;
     const user_id = body.user_id ?? -1;
-    
+
+    if (user_id === -1) return undefined;
     return new Currency(id, name, symbol, usd_value, user_id);
   }
 }

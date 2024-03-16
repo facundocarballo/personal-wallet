@@ -12,3 +12,15 @@ This endpoint is used to create a new user. The server expect to receive this ki
     }
 ```
 > Please, if you want to use this endpoint by yourself check that your password is hashed with a SHA-256 Algorithm. :)
+
+## Currency
+### Create
+This endpoint is used to create a new currency. The server expect to receive this kind of data in the body request.
+```json
+    {
+        "name": "Peso Argentino",
+        "symbol": "ARS",
+        "usd_value": 1090
+    }
+```
+> To make this request work, you have to provide a JWT thought the Authorization Header.

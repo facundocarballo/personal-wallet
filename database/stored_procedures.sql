@@ -6,9 +6,7 @@ CREATE PROCEDURE CreateUser(
     IN password VARCHAR(255),
     OUT user_id INT
 )
-BEGIN
-	DECLARE v_user_id INT;
-    
+BEGIN    
     INSERT INTO User(name, last_name, email, password)
     VALUES (name, last_name, email, password);
     
@@ -23,5 +21,32 @@ CREATE PROCEDURE GetUser(
 )
 BEGIN
 	SELECT * FROM User WHERE User.id = id;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE CreateCurrency(
+	IN name VARCHAR(255),
+    IN symbol VARCHAR(3),
+    IN usd_value INT,
+    IN user_id INT,
+    OUT currency_id INT
+)
+BEGIN    
+    INSERT INTO Currency(name, symbol, usd_value, user_id)
+    VALUES (name, symbol, usd_value, user_id);
+    
+    SELECT LAST_INSERT_ID() INTO currency_id;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE GetCurrencies(
+	IN user_id INT
+)
+BEGIN
+	SELECT * FROM Currency WHERE Currency.user_id = user_id;
 END //
 DELIMITER ;

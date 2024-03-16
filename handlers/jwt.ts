@@ -25,7 +25,10 @@ export const CheckJWT = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY);
-    (req as any).user = decoded;
+    if (req.method === "GET") {
+      (req as any).user_id = (decoded as any).id;
+    }
+    (req as any).body.user_id = (decoded as any).id;
     next();
   } catch (err) {
     res.status(403).send(ErrorMessages.jwt.invalid);
