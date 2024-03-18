@@ -95,3 +95,28 @@ BEGIN
     SELECT * FROM Category;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE CreateAccount(
+	IN name VARCHAR(255),
+    IN currency_id INT,
+    OUT account_id INT
+)
+BEGIN    
+    INSERT INTO Account(name, currency_id)
+    VALUES (name, currency_id);
+    
+    SELECT LAST_INSERT_ID() INTO account_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetAccounts(
+	IN user_id INT
+)
+BEGIN    
+    SELECT * FROM Account WHERE Account.currency_id IN (
+		SELECT id FROM Currency WHERE Currency.user_id = user_id
+    );
+END //
+DELIMITER ;

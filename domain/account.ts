@@ -16,4 +16,17 @@ export class Account {
 
     return new Account(id, name, currency_id);
   }
+
+  static anyToArray(results: any[]): Account[] | undefined {
+    const arr: Account[] = [];
+    try {
+      results.forEach((res) => {
+        arr.push(new Account(res.id, res.name, res.description));
+      });
+    } catch (err) {
+      console.error("Error formatting the results.");
+      return undefined;
+    }
+    return arr;
+  }
 }

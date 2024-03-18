@@ -31,12 +31,6 @@ export const Create = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const Get = async (req: Request, res: Response): Promise<void> => {
-  const user_id = (req as any).user_id;
-  if (!user_id) {
-    res.status(400).send(ErrorMessages.category.get[400]);
-    return;
-  }
-
   const categories = await service.Get();
   if (!categories) {
     res.status(500).send(ErrorMessages[500]);
