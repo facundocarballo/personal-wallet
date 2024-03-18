@@ -50,3 +50,27 @@ BEGIN
 	SELECT * FROM Currency WHERE Currency.user_id = user_id;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE CreateTag(
+	IN name VARCHAR(255),
+    IN percentage FLOAT,
+    IN user_id INT,
+    OUT tag_id INT
+)
+BEGIN    
+    INSERT INTO Tag(name, percentage, user_id)
+    VALUES (name, percentage, user_id);
+    
+    SELECT LAST_INSERT_ID() INTO tag_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetTags(
+    IN user_id INT
+)
+BEGIN    
+    SELECT * FROM Tag WHERE Tag.user_id = user_id;
+END //
+DELIMITER ;

@@ -24,3 +24,14 @@ This endpoint is used to create a new currency. The server expect to receive thi
     }
 ```
 > To make this request work, you have to provide a JWT thought the Authorization Header.
+
+## Tag
+### Create
+This endpoint is used to create a new tag. The server expect to receive this kind of data in the body request.
+```json
+    {
+        "name": "Auto",
+        "percentage": "0.10"
+    }
+```
+> To make this request work, you have to provide a JWT thought the Authorization Header.

@@ -34,7 +34,7 @@ CREATE TABLE Category (
 CREATE TABLE Tag (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    percetage FLOAT NOT NULL,
+    percentage FLOAT NOT NULL,
     user_id INT NOT NULL
 );
 
