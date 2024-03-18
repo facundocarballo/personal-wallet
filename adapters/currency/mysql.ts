@@ -27,7 +27,7 @@ export class MySqlCurrencyRepository implements CurrencyRepository {
       [user_id]
     );
     if (!currencies) return undefined;
-    return Currency.resultsToTags(currencies);
+    return Currency.anyToArray(currencies);
   }
   async Delete(id: number): Promise<Currency | undefined> {
     throw new Error("Method not implemented.");

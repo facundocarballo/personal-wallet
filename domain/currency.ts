@@ -30,11 +30,11 @@ export class Currency {
     return new Currency(id, name, symbol, usd_value, user_id);
   }
 
-  static resultsToTags(results: any[]): Currency[] | undefined {
-    const tags: Currency[] = [];
+  static anyToArray(results: any[]): Currency[] | undefined {
+    const arr: Currency[] = [];
     try {
       results.forEach((res) => {
-        tags.push(
+        arr.push(
           new Currency(res.id, res.name, res.symbol, res.usd_value, res.user_id)
         );
       });
@@ -42,6 +42,6 @@ export class Currency {
       console.error("Error formatting the results.");
       return undefined;
     }
-    return tags;
+    return arr;
   }
 }

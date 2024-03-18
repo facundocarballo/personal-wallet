@@ -20,16 +20,16 @@ export class Tag {
     return new Tag(id, name, percentage, user_id);
   }
 
-  static resultsToTags(results: any[]): Tag[] | undefined {
-    const tags: Tag[] = [];
+  static anyToArray(results: any[]): Tag[] | undefined {
+    const arr: Tag[] = [];
     try {
       results.forEach((res) => {
-        tags.push(new Tag(res.id, res.name, res.percentage, res.user_id));
+        arr.push(new Tag(res.id, res.name, res.percentage, res.user_id));
       });
     } catch (err) {
       console.error("Error formatting the results.");
       return undefined;
     }
-    return tags;
+    return arr;
   }
 }

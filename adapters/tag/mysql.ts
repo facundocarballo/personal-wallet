@@ -20,7 +20,7 @@ export class MySqlTagRepository implements TagRepository {
       user_id,
     ]);
     if (!tags) return undefined;
-    return Tag.resultsToTags(tags);
+    return Tag.anyToArray(tags);
   }
   Update(tag: Tag): Promise<Tag | undefined> {
     throw new Error("Method not implemented.");
