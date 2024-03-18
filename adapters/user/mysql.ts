@@ -87,7 +87,7 @@ async function ExecuteGetUserStoredProcedure(
           }
           const user = User.bodyToUser(results[0][0]);
           if (!user) {
-            reject("User cannot be parsed from JSON.");
+            reject(Error("User cannot be parsed from JSON."));
             return undefined;
           }
           resolve(user);
