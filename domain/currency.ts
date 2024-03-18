@@ -29,4 +29,19 @@ export class Currency {
     if (user_id === -1) return undefined;
     return new Currency(id, name, symbol, usd_value, user_id);
   }
+
+  static resultsToTags(results: any[]): Currency[] | undefined {
+    const tags: Currency[] = [];
+    try {
+      results.forEach((res) => {
+        tags.push(
+          new Currency(res.id, res.name, res.symbol, res.usd_value, res.user_id)
+        );
+      });
+    } catch (err) {
+      console.error("Error formatting the results.");
+      return undefined;
+    }
+    return tags;
+  }
 }
