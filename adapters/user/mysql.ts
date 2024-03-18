@@ -3,10 +3,18 @@ import { User } from "../../domain/user";
 import { DatabaseConnection } from "../../infrastructure/server";
 import { UserRepository } from "../../ports/user";
 import ErrorMessages from "../../errors.json";
+import {
+  ExecuteCreateMySqlStoredProcedure,
+  ExecuteGetMySqlStoredProcedure,
+} from "../../handlers/stored_procedures";
 
 export class MySqlUserRepository implements UserRepository {
   async Create(user: User): Promise<User | undefined> {
-    const newUserId = await ExecuteCreateUserStoredProcedure(user);
+    const newUserId = await ExecuteCreateMySqlStoredProcedure(
+      "CALL CreateUser(?, ?, ?, ?, @user_id)",
+      "SELECT @user_id AS new_id",
+      [user.name, user.lastName, user.email, user.password]
+    );
     if (!newUserId) return undefined;
     return new User(
       newUserId,
@@ -18,9 +26,17 @@ export class MySqlUserRepository implements UserRepository {
   }
 
   async Get(id: number): Promise<User | undefined> {
-    const user = await ExecuteGetUserStoredProcedure(id);
-    if (!user) return undefined;
-    return new User(id, user.name, user.lastName, user.email, user.password);
+    const results = await ExecuteGetMySqlStoredProcedure("CALL GetUser(?)", [
+      id,
+    ]);
+    if (!results) return undefined;
+    return new User(
+      results[0].id,
+      results[0].name,
+      results[0].lastName,
+      results[0].email,
+      results[0].password
+    );
   }
 }
 
