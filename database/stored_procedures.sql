@@ -74,3 +74,24 @@ BEGIN
     SELECT * FROM Tag WHERE Tag.user_id = user_id;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE CreateCategory(
+	IN name VARCHAR(255),
+    IN description VARCHAR(255),
+    OUT category_id INT
+)
+BEGIN    
+    INSERT INTO Category(name, description)
+    VALUES (name, description);
+    
+    SELECT LAST_INSERT_ID() INTO category_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetCategories()
+BEGIN    
+    SELECT * FROM Category;
+END //
+DELIMITER ;

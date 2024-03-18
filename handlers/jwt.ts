@@ -27,6 +27,8 @@ export const CheckJWT = (req: Request, res: Response, next: NextFunction) => {
     const decoded = jwt.verify(token, SECRET_KEY);
     if (req.method === "GET") {
       (req as any).user_id = (decoded as any).id;
+      next();
+      return;
     }
     (req as any).body.user_id = (decoded as any).id;
     next();

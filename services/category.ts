@@ -12,8 +12,8 @@ export class CategoryService {
     return await this.repository.Create(category);
   }
 
-  async Get(user_id: number): Promise<Category[] | undefined> {
-    return await this.repository.Get(user_id);
+  async Get(): Promise<Category[] | undefined> {
+    return await this.repository.Get();
   }
 
   async Delete(id: number): Promise<Category | undefined> {
