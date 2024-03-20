@@ -163,7 +163,7 @@ BEGIN
     INSERT INTO Transaction(account_id, category_id, tag_id, amount)
     VALUES (account_id, category_id, tag_id, amount);
     
-    SELECT LAST_INSERT_ID() INTO tx_id;
+    SELECT LAST_INSERT_ID() INTO expense_id;
 END //
 DELIMITER ;
 
