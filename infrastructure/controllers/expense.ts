@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { MySqlTransactionRepository } from "../../adapters/transaction/mysql";
-import { TransactionService } from "../../services/transaction";
+import { MySqlExpenseRepository } from "../../adapters/expense/mysql";
+import { ExpenseService } from "../../services/expense";
 
-const repository = new MySqlTransactionRepository();
-const service = new TransactionService(repository);
+const repository = new MySqlExpenseRepository();
+const service = new ExpenseService(repository);
 
 export const Create = async (req: Request, res: Response): Promise<void> => {};
 

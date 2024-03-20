@@ -3,7 +3,8 @@ import { UserRouter } from "./routes/user";
 import { CurrencyRouter } from "./routes/currency";
 import { AccountsRouter } from "./routes/accounts";
 import mysql, { Connection, QueryError } from "mysql2";
-import { TransactionRouter } from "./routes/transaction";
+import { ExpenseRouter } from "./routes/expense";
+import { IncomeRouter } from "./routes/income";
 import { CategoryRouter } from "./routes/category";
 import { TagRouter } from "./routes/tag";
 
@@ -33,7 +34,8 @@ app.use("/tags", TagRouter);
 app.use("/currencies", CurrencyRouter);
 app.use("/accounts", AccountsRouter);
 app.use("/categories", CategoryRouter);
-app.use("/transactions", TransactionRouter);
+app.use("/expenses", ExpenseRouter);
+app.use("/incomes", IncomeRouter);
 
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
