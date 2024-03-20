@@ -160,7 +160,7 @@ CREATE PROCEDURE CreateExpense(
     OUT expense_id INT
 )
 BEGIN    
-    INSERT INTO Transaction(account_id, category_id, tag_id, amount)
+    INSERT INTO Expense(account_id, category_id, tag_id, amount)
     VALUES (account_id, category_id, tag_id, amount);
     
     SELECT LAST_INSERT_ID() INTO expense_id;
@@ -172,7 +172,7 @@ CREATE PROCEDURE GetExpenses(
 	IN user_id INT
 )
 BEGIN    
-    SELECT * FROM Income WHERE Income.tag_id IN (
+    SELECT * FROM Expense WHERE Expense.tag_id IN (
 		SELECT id FROM Tag WHERE Tag.user_id = user_id
     );
 END //

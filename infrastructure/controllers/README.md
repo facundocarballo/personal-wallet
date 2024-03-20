@@ -35,3 +35,28 @@ This endpoint is used to create a new tag. The server expect to receive this kin
     }
 ```
 > To make this request work, you have to provide a JWT thought the Authorization Header.
+
+## Income
+### Create
+This endpoint is used to create a new tag. The server expect to receive this kind of data in the body request.
+```json
+    {
+        "account_id": 1,
+        "category_id": 1,
+        "amount": 17
+    }
+```
+> To make this request work, you have to provide a JWT thought the Authorization Header.
+
+## Expense
+### Create
+This endpoint is used to create a new tag. The server expect to receive this kind of data in the body request.
+```json
+    {
+        "account_id": 1,
+        "category_id": 1,
+        "tag_id": 1,
+        "amount": 17
+    }
+```
+> To make this request work, you have to provide a JWT thought the Authorization Header.
