@@ -120,3 +120,60 @@ BEGIN
     );
 END //
 DELIMITER ;
+
+-- 20-03-2024 
+
+DELIMITER //
+CREATE PROCEDURE CreateIncome(
+	IN account_id INT,
+    IN category_id INT,
+    IN amount FLOAT,
+    OUT income_id INT
+)
+BEGIN    
+    INSERT INTO Income(account_id, category_id, amount)
+    VALUES (account_id, category_id, amount);
+    
+    SELECT LAST_INSERT_ID() INTO income_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetIncomes(
+	IN user_id INT
+)
+BEGIN    
+    SELECT * FROM Income WHERE Income.account_id IN (
+		SELECT id FROM Account WHERE Account.currency_id IN (
+			SELECT id FROM Currency WHERE Currency.user_id = user_id
+        )
+    );
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE CreateExpense(
+	IN account_id INT,
+    IN category_id INT,
+    IN tag_id INT,
+    IN amount FLOAT,
+    OUT expense_id INT
+)
+BEGIN    
+    INSERT INTO Transaction(account_id, category_id, tag_id, amount)
+    VALUES (account_id, category_id, tag_id, amount);
+    
+    SELECT LAST_INSERT_ID() INTO tx_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetExpenses(
+	IN user_id INT
+)
+BEGIN    
+    SELECT * FROM Income WHERE Income.tag_id IN (
+		SELECT id FROM Tag WHERE Tag.user_id = user_id
+    );
+END //
+DELIMITER ;

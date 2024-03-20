@@ -38,13 +38,22 @@ CREATE TABLE Tag (
     user_id INT NOT NULL
 );
 
-CREATE TABLE Transaction (
+CREATE TABLE Income (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    account_id INT NOT NULL,
+    category_id INT NOT NULL,
+    amount FLOAT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES Account(id),
+    FOREIGN KEY (category_id) REFERENCES Category(id)
+);
+
+CREATE TABLE Expense (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     account_id INT NOT NULL,
     category_id INT NOT NULL,
     tag_id INT NOT NULL,
     amount FLOAT NOT NULL,
-    income BOOL NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES Account(id),
     FOREIGN KEY (category_id) REFERENCES Category(id),
